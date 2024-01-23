@@ -5,8 +5,6 @@
 # Благотворительный проект
 
 
-![alt text](https://pictures.s3.yandex.net/resources/140_1656321007.png)
-
 <p align="left" >
     <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" height="100" width="300"/></a>
     <a href="https://fastapi.tiangolo.com"><img src="https://quintagroup.com/cms/python/images/sqlalchemy-logo.png/@@images/image.png" height="85" width="400"/></a>
