@@ -1,10 +1,8 @@
 from datetime import datetime
-from typing import Optional, Dict
 
 from aiogoogle import Aiogoogle
 
 from app.core.config import settings
-
 
 FORMAT = "%Y/%m/%d %H:%M:%S"
 
@@ -14,24 +12,22 @@ SHEETS_COLUMN_COUNT = 11
 
 TABLE_NAME = "Отчет от {}"
 
-SPREADSHEET_BODY = dict(
-    properties=dict(
-        locale="ru_RU",
-    ),
-    sheets=[
-        dict(
-            properties=dict(
-                sheetType="GRID",
-                sheetId=0,
-                title="Лист1",
-                gridProperties=dict(
-                    rowCount=SHEETS_ROWS_COUNT,
-                    columnCount=SHEETS_COLUMN_COUNT,
-                ),
-            )
-        )
+SPREADSHEET_BODY = {
+    "properties": {"locale": "ru_RU"},
+    "sheets": [
+        {
+            "properties": {
+                "sheetType": "GRID",
+                "sheetId": 0,
+                "title": "Лист1",
+                "gridProperties": {
+                    "rowCount": SHEETS_ROWS_COUNT,
+                    "columnCount": SHEETS_COLUMN_COUNT,
+                },
+            }
+        }
     ],
-)
+}
 
 HEADER = [
     ["Отчет от", ""],
@@ -41,7 +37,7 @@ HEADER = [
 
 
 async def spreadsheets_create(
-    wrapper_services: Aiogoogle, spreadsheet_body: Optional[Dict] = None
+    wrapper_services: Aiogoogle, spreadsheet_body: dict | None
 ) -> str:
     """
     Создание Google таблицы

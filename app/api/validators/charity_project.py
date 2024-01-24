@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.charity_project import charity_project_crud
@@ -71,12 +70,14 @@ async def is_full_amount_update_correct(
     """
     charity_project = await charity_project_crud.get(session, project_id)
 
-    if update_full_amount is not None:
-        if update_full_amount < charity_project.invested_amount:
-            raise HTTPException(
-                status_code=400,
-                detail="Нельзя установить сумму меньше уже инвестированной!",
-            )
+    if (
+        update_full_amount is not None
+        and update_full_amount < charity_project.invested_amount
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail="Нельзя установить сумму меньше уже инвестированной!",
+        )
 
 
 async def has_donations(

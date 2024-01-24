@@ -1,6 +1,4 @@
-from typing import Optional
-
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
@@ -22,7 +20,7 @@ class CRUDCharityProject(
         self,
         session: AsyncSession,
         name: str,
-    ) -> Optional[int]:
+    ) -> int | None:
         """
         Возвращает идентификатор проекта по имени проекта
         :param session: Асинхронная сессия

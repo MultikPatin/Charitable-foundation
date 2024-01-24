@@ -1,13 +1,12 @@
 from datetime import datetime
-from typing import Optional
 
-from pydantic import BaseModel, Field, Extra, validator, PositiveInt
+from pydantic import BaseModel, Extra, Field, PositiveInt, validator
 
 
 class CharityProjectBase(BaseModel):
-    name: Optional[str] = Field(None, min_length=1, max_length=100)
-    description: Optional[str]
-    full_amount: Optional[PositiveInt]
+    name: str | None = Field(None, min_length=1, max_length=100)
+    description: str | None
+    full_amount: PositiveInt | None
 
     class Config:
         extra = Extra.forbid
@@ -33,8 +32,8 @@ class CharityProjectCreate(CharityProjectBase):
 
 class CharityProjectCheckedCreate(CharityProjectCreate):
     invested_amount: int
-    fully_invested: Optional[bool]
-    close_date: Optional[datetime]
+    fully_invested: bool | None
+    close_date: datetime | None
 
 
 class CharityProjectDB(CharityProjectCreate):
@@ -42,7 +41,7 @@ class CharityProjectDB(CharityProjectCreate):
     invested_amount: int
     fully_invested: bool
     create_date: datetime
-    close_date: Optional[datetime]
+    close_date: datetime | None
 
     class Config:
         orm_mode = True
@@ -57,6 +56,6 @@ class CharityProjectUpdate(CharityProjectBase):
 
 
 class CharityProjectCheckedUpdate(CharityProjectUpdate):
-    invested_amount: Optional[int]
-    fully_invested: Optional[bool]
-    close_date: Optional[datetime]
+    invested_amount: int | None
+    fully_invested: bool | None
+    close_date: datetime | None

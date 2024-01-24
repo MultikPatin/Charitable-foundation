@@ -1,4 +1,4 @@
-from typing import Generic, List, Optional, Type, TypeVar
+from typing import Generic, TypeVar
 
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -18,14 +18,14 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     Базовый класс CRUD операций
     """
 
-    def __init__(self, model: Type[ModelType]):
+    def __init__(self, model: type[ModelType]):
         self.model = model
 
     async def get(
         self,
         session: AsyncSession,
         obj_id: int,
-    ) -> Optional[ModelType]:
+    ) -> ModelType | None:
         """
         Получение одного объекта по id
         :param obj_id: Первичный ключ
@@ -40,7 +40,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     async def get_multi(
         self,
         session: AsyncSession,
-    ) -> List[ModelType]:
+    ) -> list[ModelType]:
         """
         Получение списка всех объектов
         :param session: Асинхронная сессия
@@ -49,9 +49,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         db_objs = await session.execute(select(self.model))
         return db_objs.scalars().all()
 
-    async def create(
-        self, session: AsyncSession, obj_in, user: Optional[User] = None
-    ):
+    async def create(self, session: AsyncSession, obj_in, user: User | None):
         """
         Создание объекта
         :param obj_in: Данные для создания

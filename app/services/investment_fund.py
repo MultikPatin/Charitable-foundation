@@ -1,11 +1,10 @@
 from datetime import datetime
-from typing import List, TypeVar, Tuple
+from typing import TypeVar
 
-from sqlalchemy import select, false
+from sqlalchemy import false, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import CharityProject, Donation
-
 
 T = TypeVar("T", CharityProject, Donation)
 
@@ -13,7 +12,7 @@ T = TypeVar("T", CharityProject, Donation)
 async def get_not_full_invested_objects(
     session: AsyncSession,
     obj_in: T,
-) -> List[T]:
+) -> list[T]:
     """
     Возвращает список не инвестированных объектов
     :param session: Асинхронная сессия
@@ -44,7 +43,7 @@ def close_donation_for_obj(obj_in: T):
 def invest_money(
     obj_in: T,
     obj_model: T,
-) -> Tuple[T, T]:
+) -> tuple[T, T]:
     """
     Инвестирование и определение объектов для закрытия
     :param obj_in: Созданный объект

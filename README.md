@@ -1,15 +1,19 @@
 ![repo size](https://img.shields.io/github/repo-size/foxygen-d/cat_charity_fund)
 ![py version](https://img.shields.io/pypi/pyversions/3)
+-----
+[![Python](https://img.shields.io/badge/Python-3.9|3.10|3.11-blue?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-1.4.36-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/SQLAlchemy/1.4.36/)
+[![Alembic](https://img.shields.io/badge/Alembic-1.7.7-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/Alembic/1.7.7/)
+[![Pydantic](https://img.shields.io/badge/Pydantic-2.3.0-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/Pydantic/2.3.0/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.78.1-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/FastAPI/0.78.1/)
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.17.6-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/Uvicorn/0.17.6/)
+[![fastapi-users](https://img.shields.io/badge/fastapi_users-10.0.4-blue?style=flat&logo=python&logoColor=white)](https://pypi.org/project/fastapi-users//10.0.4/)
+---
+[![Poetry](https://img.shields.io/badge/Poetry-used-green?style=flat&logo=python&logoColor=white)](https://pypi.org/project/poetry/)
+[![Ruff](https://img.shields.io/badge/Ruff-used-green?style=flat&logo=python&logoColor=white)](https://pypi.org/project/ruff/)
 
 
-# Благотворительный проект
-
-
-<p align="left" >
-    <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" height="100" width="300"/></a>
-    <a href="https://fastapi.tiangolo.com"><img src="https://quintagroup.com/cms/python/images/sqlalchemy-logo.png/@@images/image.png" height="85" width="400"/></a>
-</p>
-
+# Благотворительный фонд
 
 ## Описание проекта
 
@@ -24,7 +28,7 @@
 
 В Фонде может быть открыто несколько целевых проектов. 
 У каждого проекта есть название, описание и сумма, которую планируется собрать. 
-После того, как нужная сумма собрана — проект закрывается.
+После того как нужная сумма собрана — проект закрывается.
 
 Пожертвования в проекты поступают по принципу *First In, First Out*: 
 все пожертвования идут в проект, открытый раньше других; 
@@ -95,14 +99,43 @@
 
 ## Инструкция по развёртыванию проекта
 
-* клонировать проект на компьютер `git clone https://github.com/foxygen-d/cat_charity_fund.git`
-* создание виртуального окружения `python3 -m venv venv`
-* запуск виртуального окружения `. venv/bin/activate`
-* установить зависимости из файла requirements.txt `pip install -r requirements.txt`
-* запуск сервера `uvicorn main:app`
-* запуск сервера с автоматическим рестартом `uvicorn main:app --reload`
-* инициализируем Alembic в проекте `alembic init --template async alembic`
-* создание файла миграции `alembic revision --autogenerate -m "migration name"`
-* применение миграций `alembic upgrade head`
-* отмена миграций `alembic downgrade`
-* запуск тестов `pytest`
+* клонировать проект на компьютер
+    ```bash
+    git clone git@github.com:MultikPatin/Charitable-foundation.git
+    ```
+* запуск виртуального окружения
+    ```bash
+    poetry shell
+    ```
+* установить зависимости
+    ```bash
+    poetry install --with test,dev,migrations
+    ```
+* запуск сервера
+    ```bash
+    uvicorn main:app
+    ```
+* запуск сервера с автоматическим рестартом
+    ```bash
+    uvicorn main:app --reload
+    ```
+* инициализируем Alembic в проекте
+    ```bash
+    alembic init --template async alembic
+    ```
+* создание файла миграции
+    ```bash
+    alembic revision --autogenerate -m "migration name"
+    ```
+* применение миграций
+    ```bash
+    alembic upgrade head
+    ```
+* отмена миграций
+    ```bash
+    alembic downgrade
+    ```
+* запуск тестов
+    ```bash
+    pytest
+    ```

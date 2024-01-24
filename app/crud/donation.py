@@ -1,5 +1,3 @@
-from typing import List
-
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -18,7 +16,7 @@ class CRUDReservation(CRUDBase[Donation, DonationCreate, None]):
         self,
         session: AsyncSession,
         user: User,
-    ) -> List[Donation]:
+    ) -> list[Donation]:
         """
         Получение списка пожертвований, сделанных пользователем
         :param user: Модель пользователя для фильтрации

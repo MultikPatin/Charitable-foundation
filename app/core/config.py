@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseSettings, EmailStr
 
 
@@ -8,19 +6,20 @@ class Settings(BaseSettings):
     description: str = "Описание будет позже"
     database_url: str = "sqlite+aiosqlite:///./fastapi.db"
     secret: str = "SECRET"
-    first_superuser_email: Optional[EmailStr] = None
-    first_superuser_password: Optional[str] = None
-    type: Optional[str] = None
-    project_id: Optional[str] = None
-    private_key_id: Optional[str] = None
-    private_key: Optional[str] = None
-    client_email: Optional[str] = None
-    client_id: Optional[str] = None
-    auth_uri: Optional[str] = None
-    token_uri: Optional[str] = None
-    auth_provider_x509_cert_url: Optional[str] = None
-    client_x509_cert_url: Optional[str] = None
-    email: Optional[str] = None
+    first_superuser_email: EmailStr | None
+    first_superuser_password: str | None
+    type: str | None
+    project_id: str | None
+    private_key_id: str | None
+    private_key: str | None
+    client_email: str | None
+    client_id: str | None
+    auth_uri: str | None
+    token_uri: str | None
+    auth_provider_x509_cert_url: str | None
+    client_x509_cert_url: str | None
+    universe_domain: str | None
+    email: str | None
 
     class Config:
         env_file = ".env"

@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from sqlalchemy import (
-    Column,
-    CheckConstraint,
-    Integer,
     Boolean,
+    CheckConstraint,
+    Column,
     DateTime,
+    Integer,
 )
 
 from app.core.db import Base
